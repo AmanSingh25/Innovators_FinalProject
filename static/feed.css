@@ -158,18 +158,55 @@ html{
         font-size: 25px;
     }
 }
+
+/* create a feed button */
+.contact {
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border-color:orange;
+  }
+  
+  #mybutton {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+  }
+  
+  /* unvisited link */
+  a:link {
+    color: white;
+    text-decoration: none;
+    font-size:18px;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: white;
+    text-decoration: none;
+    font-size:18px;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: white;
+    font-weight: bold;
+    font-size:18px;
+  }
+  
   
 /* main container css starts */
 
 .mainContainer{
-    margin: 10% 10%;
+    margin: 10% 20%;
     width: 80%;
     position: absolute;
 }
 
 .mainHeading h1{
     padding-top: 20px;
-    text-align: center;
+    margin-left: 24%;
     font-size: 50px;
     font-family: fantasy;
 }
@@ -200,5 +237,45 @@ html{
 
 .content{
     text-align: center;
+    width: 700px;
 }
+
+.content h2{
+    padding-bottom: 15px;
+}
+
+.content p{
+    padding-bottom: 30px;
+    padding-top: 15px;
+}
+
+.content img{
+    transition: 0.3s;
+}
+
+.content img:hover{
+    transform: scale(1.1);
+}
+
+/* footer section styling */
+.footer{
+    background: #111;
+    padding: 15px 23px;
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-top: 100%;
+    left: 0;
+}
+
+footer span a{
+    color: orange;
+    text-decoration: none;
+}
+footer span a:hover{
+    text-decoration: underline;
+}
+
+
 
