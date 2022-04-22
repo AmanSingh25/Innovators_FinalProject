@@ -17,7 +17,7 @@ app.config['MONGO_URI'] = "mongodb+srv://innovators:tDxp5O4E312IPoiA@cluster0.ns
 #Initialize PyMongo
 mongo = PyMongo(app)
 
-mongo.db.create_collection("post")
+# mongo.db.create_collection("post")
 
 # -- Routes section --
 # INDEX Route

@@ -57,7 +57,20 @@
         <button type="submit" href="/">Post</button>
       </div>
     </form>
-    
+    {% extends "feed.html"%}
+    (% block content %)
+    {% for comment in comments %}
+    <li><a href="profile/{( comment.author )}">(( comment.author ))</a>:"<1>({ comment.text | safe}}"</i></li>
+    {% endfor %}
+    {% if session['username']%}
+    <h3>Leave a comment: </h3>
+    <form action="/update" method="POST" class="comment_form">
+        <input type="text" name="text">
+        <input type="submit">
+    </form>
+    {% end1f %}
+{% endblock %}
+
 
 </body>
 </html>
