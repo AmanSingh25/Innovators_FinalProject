@@ -21,19 +21,29 @@ mongo.db.create_collection("post")
 
 # -- Routes section --
 # INDEX Route
-# @app.route('/')
-# @app.route('/')
-# def index():
-#     return render_template('feed.html')
-# @app.route('/register')
-# def register():
-#     return render_template('signup.html')
-# @app.route('/profile')
-# def profile():
-#     return render_template('profile.html')
-# @app.route('/feed')
-# def feed():
-#     return render_template('feed.html')
-# @app.route('/update')
-# def update():
-#     return render_template('update.html')
+@app.route('/')
+@app.route('/')
+def index():
+    return render_template('feed.html')
+@app.route('/register')
+def register():
+    return render_template('signup.html')
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+@app.route('/feed')
+def feed():
+    return render_template('feed.html')
+
+
+
+@app.route('/update', methods=['GET','POST'])
+def update():
+    comments_collection = mongo.db.posts
+    if request.method =='GET':
+        posts = comments_collection.find({'hidden': 'false'})
+        return render_template('update.html', comments = posts)
+    # insert comment
+    text = request.form['text']
+    comments_collection.insert_one({'text':text, 'author': session['username'],'hidden':'false'})
+    return redirect('/update.html')
