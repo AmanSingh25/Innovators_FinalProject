@@ -24,18 +24,18 @@ long_box {
 <body>
 	<center>
 	<h1>TECHNICALLY SOCIAL </h1> 
-    <form method="post" action="/action_page.php">
+    <form method="POST" action="/signup">
         <label for="username">Pick a Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter In your Username"><br><br>
+        <input type="text" id="username" name="username" placeholder="Enter In your Username" value = ""><br><br>
         <label for="password">Pick a Password:</label>
-        <input type="text" id="password" name="password" placeholder="Enter In your Password"><br><br>
+        <input type="text" id="password" name="password" placeholder="Enter In your Password" value = ""><br><br>
 			<label for="password1">Confirm Password:</label>
-        <input type="text" id="password1" name="password1" placeholder="Re-enter your Password"><br><br>
+        <input type="text" id="password1" name="password1" placeholder="Re-enter your Password" value = ""><br><br>
 			<label for="bio">Enter a your Profile photo url:</label>
 			<long_box>
-        <input type="text" id="bio" name="bio" placeholder="Enter your image url"><br><br>
+        <input type="text" id="image_url" name="image_url" placeholder="Enter your image url" value = ""><br><br>
 				</long_box>
-        <button type="button">Sign Up</button>
+        <button type="submit">Sign Up</button>
       </form>
 		</center>
 </body>
