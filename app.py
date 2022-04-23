@@ -65,15 +65,20 @@ def singup():
         #if user not in database
         if not existing_user:
             username = request.form['username']
+            #
+            if request.form['password'] == '':
+                return
             #encode password for hashing
             password = (request.form['password']).encode("utf-8")
             password1 = (request.form['password1']).encode("utf-8")
+            #check passwords equal
+            
             #hash password
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password, salt)
             hashed1 = bcrypt.hashpw(password1, salt)
             image_url = request.form['image_url']
-
+            
             #add new user to database
             users.insert_one({'name': username, 'password': hashed, 'image_url' : image_url})
             #store username in session
