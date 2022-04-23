@@ -21,8 +21,8 @@ mongo = PyMongo(app)
 
 # -- Routes section --
 # INDEX Route
-@app.route('/')
-@app.route('/')
+# @app.route('/')
+# @app.route('/')
 def index():
     return render_template('feed.html')
 @app.route('/register')
@@ -36,14 +36,31 @@ def feed():
     return render_template('feed.html')
 
 
+@app.route('/')
+@app.route('/create', methods=["GET", "POST"])
+def create():
+    if request.method == "GET":
+        #render the form to populate the required parameters
+        return render_template("create.html")
+    else:
+        #assign from data to varaibles
+        post_name = request.form['postname']
+        post_url = request.form['posturl']
+        post_message = request.form['postmessage']    
+    collection = mongo.db.post
 
-@app.route('/update', methods=['GET','POST'])
-def update():
-    comments_collection = mongo.db.posts
-    if request.method =='GET':
-        posts = comments_collection.find({'hidden': 'false'})
-        return render_template('update.html', comments = posts)
-    # insert comment
-    text = request.form['text']
-    comments_collection.insert_one({'text':text, 'author': session['username'],'hidden':'false'})
-    return redirect('/update.html')
+     #insert an entry to the database using the variables declared above
+    collection.insert_one({"postname":post_name, "posturl":post_url, "postmessage":post_message})
+    # return render_template('create.html')
+    return render_template("feed.html")
+
+# @app.route('/update', methods=['GET','POST'])
+# def update():
+#     comments_collection = mongo.db.posts
+#     if request.method =='GET':
+#         posts = comments_collection.find({'hidden': 'false'})
+#         return render_template('update.html', comments = posts)
+#     # insert comment
+#     text = request.form['text']
+#     comments_collection.insert_one({'text':text, 'author': session['username'],'hidden':'false'})
+#     return redirect('/update.html')
