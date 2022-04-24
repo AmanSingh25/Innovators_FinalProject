@@ -87,11 +87,11 @@ def singup():
             password = (request.form['password']).encode("utf-8")
             password1 = (request.form['password1']).encode("utf-8")
             #check passwords equal
-            
+            if request.form['password'] != request.form['password1']:
+                return render_template("signup.html")
             #hash password
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password, salt)
-            hashed1 = bcrypt.hashpw(password1, salt)
             image_url = request.form['image_url']
             
             #add new user to database
