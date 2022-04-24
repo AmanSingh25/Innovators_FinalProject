@@ -4,6 +4,7 @@ from flask import Flask
 from flask import render_template
 from flask import request, redirect, session, url_for, session
 from flask_pymongo import PyMongo
+from model import *
 import secrets
 import bcrypt
 
@@ -16,8 +17,6 @@ app.config['MONGO_DBNAME'] = 'database'
 # URI of database
 app.config['MONGO_URI'] = "mongodb+srv://innovators:tDxp5O4E312IPoiA@cluster0.nsm9q.mongodb.net/database?retryWrites=true&w=majority"
 
-secret_key = os.environ.get('MONGO_URI')
-# app.config['MONGO_URI'] = secret_key
 
 # -- Session data --
 app.secret_key = secrets.token_urlsafe(16)
@@ -63,7 +62,23 @@ def singup():
     if request.method == "POST":
         users = mongo.db.users_info
         #search for username in database
-        existing_user = users.find_one({'name': request.form['username']})
+        user_name = request.form['username']
+        password_unencrypted = request.form['password']
+
+        #checks if both password and username format is empty
+        if is_all_empty(user_name) and is_all_empty(password_unencrypted):
+            return render_template("signup.html", response=True, box=True)
+        #checks if username format is empty
+        elif is_all_empty(user_name):
+            return render_template("signup.html", response1=True, box=True)
+        #checks if the password is empty
+        elif is_all_empty(password_unencrypted):
+            return render_template("signup.html", response2=True, box=True)
+        #checks if the password is valid or not
+        elif is_valid_password(password_unencrypted):
+            return render_template("signup.html", response3=True, box=True)
+        
+        existing_user = users.find_one({'name':user_name})
 
         #if user not in database
         if not existing_user:
@@ -104,16 +119,17 @@ def create():
 
      #insert an entry to the database using the variables declared above
     collection.insert_one({"postname":post_name, "posturl":post_url, "postmessage":post_message, "user":session['username'], "profile_url":session['image_url']})
-    return render_template("feed.html")
+    return render_template("create.html")
 
-#allfeed rouute
+#allfeed route
 @app.route('/feed')
 def feed():
     collection = mongo.db.post
-    # collection.insert_many(organizations_info)
-    # sort the database alphabetically based on their name and render all the organizations name to the page in sorted manner
-    feeds = collection.find().sort('postname')
+    feeds = collection.find({})
+    # sort the database alphabetically based on their name and render all the user name to the page in sorted manner
     return render_template('feed.html', feeds = feeds)
+
+    
 
 
 

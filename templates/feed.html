@@ -42,18 +42,19 @@
 <!-- posts sections starts -->
   <div class="mainContainer">
     <div class = mainHeading>
-      <h1>Posts</h1>
-    <!-- </div>
-      {% for feed in feeds %}
-      <ul class = "profileInfo">
-        <li><img src= "{{ feed.profile_url }}"></li> 
-        <li><h2>{{ feed.user }}</h2></li>
-      </ul>
-      <div class = "content">
-        <h2>{{ feed.postname }}</h2>
-        <img src = "{{ feed.posturl }}">
-        <p>{{ feed.postmessage }}</p>
-      {% endfor %} -->
+      <h1>POSTS</h1>
+    </div>
+    {% for feed in feeds %}
+        {{ feed['postname'] }}
+        <ul class = "profileInfo">
+            <li><img src= "{{feed.image_url}}"></li> 
+            <li><h2>{{ session['username'] }}</h2></li>
+        </ul>
+        <div class = "content">
+            <h2>{{ feed.name }}</h2>
+            <img src = "{{feed.posturl}}">
+        <p>{{feed.postmessage}}</p>
+    {% endfor %}
         </div>
       </div>
   </div>
@@ -65,4 +66,3 @@
     <span>Created By Team Innovators | <span class="far fa-copyright"></span> 2022 All rights reserved.</span>
   </footer>
 </html>
-  
