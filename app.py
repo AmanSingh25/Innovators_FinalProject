@@ -121,15 +121,56 @@ def create():
     collection.insert_one({"postname":post_name, "posturl":post_url, "postmessage":post_message, "user":session['username'], "profile_url":session['image_url']})
     return render_template("create.html")
 
+
 #allfeed route
+
+@app.route('/delete', methods=["GET", "POST"])
+def delete():
+    if request.method == "GET":
+        #render the form to populate the required parameters
+        return render_template("delete.html")
+    else:
+        #assign from data to varaibles
+        post_name = request.form['postname']
+        post_url = request.form['posturl']
+        post_message = request.form['postmessage']    
+    collection = mongo.db.post
+
+     #delete an entry to the database using the variables declared above
+    collection.delete_one({"postname":post_name, "posturl":post_url, "postmessage":post_message})
+    # return render_template('create.html')
+    return render_template("feed.html")
+
+
+
+
+
+@app.route('/update', methods=['GET','POST'])
+def update():
+    if request.method == "GET":
+        #render the form to populate the required parameters
+        return render_template("update.html")
+    else:
+        #assign from data to varaibles
+        old_post_name = request.form['postname']
+        old_post_url = request.form['posturl']
+        old_post_message = request.form['postmessage']    
+    collection = mongo.db.post
+    new_post_name = { "$set": { "postname":old_post_name } }
+    new_post_url = { "$set": {"posturl":old_post_url }}
+    new_post_message = { "$set": { "postmessage":old_post_message} }
+     #delete an entry to the database using the variables declared above
+    collection.update_one({"postname":old_post_name, "posturl":old_post_url, "postmessage":old_post_message},{"postname":new_post_name, "posturl":new_post_url, "postmessage":new_post_message})
+    # return render_template('create.html')
+    return render_template("feed.html")
+
+#allfeed rouute
 @app.route('/feed')
 def feed():
     collection = mongo.db.post
     feeds = collection.find({})
     # sort the database alphabetically based on their name and render all the user name to the page in sorted manner
     return render_template('feed.html', feeds = feeds)
-
-    
 
 
 
