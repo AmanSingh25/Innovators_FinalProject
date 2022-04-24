@@ -167,5 +167,3 @@ def feed():
     feeds = collection.find_one({'postname': 'First Post by Team Innovators'})
     # sort the database alphabetically based on their name and render all the user name to the page in sorted manner
     return render_template('feed.html', feeds = feeds)
-
-
