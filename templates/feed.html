@@ -24,9 +24,9 @@
         <div class="max-width">
             <div class="logo"><a href="#">TechX<span> Feed</span></a></div>
             <ul class="menu">
-                <li><a href="#home" class="menu-btn">Feed</a></li>
-                <li><a href="#experiences" class="menu-btn">Update your post</a></li>
-                <li><a href="#experiences" class="menu-btn">Logged as</a></li>
+                <li><a href="/feed" class="menu-btn">Feed</a></li>
+                <li><a href="/edit" class="menu-btn">Update your post</a></li>
+                <li><a href="#" class="menu-btn">Logged as {{ session['username'] }}</a></li>
             </ul>
             <div class="menu-btn">
                 <i class="fas fa-bars"></i>
@@ -36,37 +36,30 @@
 
 <!-- create your feed button -->
 <div id="mybutton">
-  <button class="contact"><a href="https://www.nwafoodbank.org/contact">Create your posts</a> </button>
+  <button class="contact"><a href="/create">Create your posts</a> </button>
 </div>
 
 <!-- posts sections starts -->
   <div class="mainContainer">
     <div class = mainHeading>
       <h1>Posts</h1>
-    </div>
-      <!-- for loop starts -->
+    <!-- </div>
+      {% for feed in feeds %}
       <ul class = "profileInfo">
-        <li><img src="profile.jpg"></li> 
-        <li><h2>UserName</h2></li>
+        <li><img src= "{{ feed.profile_url }}"></li> 
+        <li><h2>{{ feed.user }}</h2></li>
       </ul>
       <div class = "content">
-        <h2>Post Name</h2>
-        <img src = "fintech.jpg">
-        <p>Financial technology is the technology and innovation that aims to compete with traditional financial methods in the delivery of financial services. It is an emerging industry that uses technology to improve activities in finance</p>
-        <!-- for loop ends -->
-        <ul class = "profileInfo">
-          <li><img src="profile.jpg"></li> 
-          <li><h2>UserName</h2></li>
-        </ul>
-        <div class = "content">
-          <h2>Post Name</h2>
-          <img src = "fintech.jpg">
-          <p>Financial technology is the technology and innovation that aims to compete with traditional financial methods in the delivery of financial services. It is an emerging industry that uses technology to improve activities in finance</p>
+        <h2>{{ feed.postname }}</h2>
+        <img src = "{{ feed.posturl }}">
+        <p>{{ feed.postmessage }}</p>
+      {% endfor %} -->
         </div>
       </div>
   </div>
   <script src="static\script.js"></script>
 </body>
+
    <!-- footer section start -->
    <footer class="footer">
     <span>Created By Team Innovators | <span class="far fa-copyright"></span> 2022 All rights reserved.</span>
