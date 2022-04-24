@@ -67,16 +67,16 @@ def singup():
 
         #checks if both password and username format is empty
         if is_all_empty(user_name) and is_all_empty(password_unencrypted):
-            return render_template("signup.html", response=True, box=True)
+            return render_template("signup.html")
         #checks if username format is empty
         elif is_all_empty(user_name):
-            return render_template("signup.html", response1=True, box=True)
+            return render_template("signup.html")
         #checks if the password is empty
         elif is_all_empty(password_unencrypted):
-            return render_template("signup.html", response2=True, box=True)
+            return render_template("signup.html")
         #checks if the password is valid or not
-        elif is_valid_password(password_unencrypted):
-            return render_template("signup.html", response3=True, box=True)
+        elif not is_valid_password(password_unencrypted):
+            return render_template("signup.html")
         
         existing_user = users.find_one({'name':user_name})
 
@@ -164,7 +164,7 @@ def update():
 @app.route('/feed')
 def feed():
     collection = mongo.db.post
-    feeds = collection.find({})
+    feeds = collection.find_one({'postname': 'First Post by Team Innovators'})
     # sort the database alphabetically based on their name and render all the user name to the page in sorted manner
     return render_template('feed.html', feeds = feeds)
 
