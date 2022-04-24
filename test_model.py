@@ -22,12 +22,4 @@ class TestModel(unittest.TestCase):
         self.assertEquals(is_valid_password("Abc1@"), True)
         self.assertEquals(is_valid_password("bcd123"), False)
         self.assertEquals(is_valid_password("@@@12"), False)
-        self.assertEquals(is_valid_password("aBc1234!"), False)
-
-
-
-
-
-
-
-
+        self.assertEquals(is_valid_password("aBc1234!"), True)

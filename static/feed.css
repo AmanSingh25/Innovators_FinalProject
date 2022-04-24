@@ -253,29 +253,13 @@ html{
     transition: 0.3s;
 }
 
+.postsimage{
+    width: 650px;
+    height:400px;
+}
+
 .content img:hover{
     transform: scale(1.1);
 }
-
-/* footer section styling */
-.footer{
-    background: #111;
-    padding: 15px 23px;
-    color: #fff;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    margin-top: 100%;
-    left: 0;
-}
-
-footer span a{
-    color: orange;
-    text-decoration: none;
-}
-footer span a:hover{
-    text-decoration: underline;
-}
-
 
 

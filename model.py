@@ -23,33 +23,20 @@ def is_valid_password(password):
 
     special_char = 0
     upper_case = 0
-    lower_Case = 0
+    lower_case = 0
     num = 0
 
     for chars in password:
         if chars.isdigit():
             num += 1
-        if chars.isupper():
+        elif chars.isupper():
             upper_case += 1
-        if chars.islower():
-            lower_Case += 1
-        if chars in {"@", "$", "!", "^", "&", "*", "#"}:
+        elif chars.islower():
+            lower_case += 1
+        elif chars in {"@", "$", "!", "^", "&", "*", "#"}:
             special_char += 1
     
-    if special_char > 0 and lower_Case > 0 and upper_case > 0 and num > 0:
+    if special_char > 0 and lower_case > 0 and upper_case > 0 and num > 0:
         return True
     return False
         
-
-
-
-
-
-
-
-    
-
-
-
-
-
