@@ -25,7 +25,6 @@
             <div class="logo"><a href="#">TechX<span> Feed</span></a></div>
             <ul class="menu">
                 <li><a href="/feed" class="menu-btn">Feed</a></li>
-                <li><a href="/create" class="menu-btn">Create a Post</a></li>
                 <li><a href="/edit" class="menu-btn">Update post</a></li>
                 <li><a href="/delete" class="menu-btn">Delete post</a></li>
                 <li><a href="#" class="menu-btn">Logged as {{ session['username'] }}</a></li>
@@ -57,11 +56,12 @@
             {% if feed.posturl %}
             <img class = "postsimage" src = "{{feed.posturl}}">
             {% endif %}
-        <p>{{feed.postmessage}}</p>
+        <p><strong>{{feed.postmessage}}</strong></p>
     {% endfor %}
         </div>
       </div>
   </div>
   <script src="static\script.js"></script>
+
 </body>
 </html>

@@ -176,7 +176,7 @@ def update():
             feeds = collection.find().sort('user')
             return render_template("feed.html", feeds = feeds)
         else:
-            "not allowed"
+            return "not allowed"
 
 #allfeed rouute
 @app.route('/feed')
