@@ -1,5 +1,3 @@
-#creating different functions that validates the passwords and user name
-
 def is_all_empty(chars):
     '''
     this function checks if the input is empty and returnsw True
@@ -49,10 +47,11 @@ def is_valid_url(url):
     if type(url) != str: 
         raise TypeError("url must be a string")
     
-    valid_ends = [".jpg" , ".jpeg" , ".img" , ".gif" , "png"]
+    # valid_ends = {".jpg",".jpeg",".img",".gif",".png"}
 
-    for char in valid_ends:
-        if valid_ends in url:
-            return True
-        return False
+    for ends in url:
+        if ends not in {".jpg",".jpeg",".img",".gif",".png"}:
+            return False
+        else:
+            return False
         
