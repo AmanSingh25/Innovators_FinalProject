@@ -131,6 +131,12 @@ def create():
         post_url = request.form['posturl']
         post_message = request.form['postmessage']    
     collection = mongo.db.post
+    
+    if is_valid_url(post_url):
+        return render_template("create.html")
+
+    elif is_all_empty(post_url):
+        return render_template("create.html")
      #insert an entry to the database using the variables declared above
     collection.insert_one({"postname":post_name, "posturl":post_url, "postmessage":post_message, "user":session['username'], "profile_url":session['image_url']})
     feeds = collection.find().sort('user')
