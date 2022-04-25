@@ -41,18 +41,18 @@ def is_valid_password(password):
     return False
 
 
-# def is_valid_url(url):
-#     '''
-#     this function checks if the url is valid
-#     return type: boolean, returns true if url is a picture
-#     '''
-#     if type(url) != str: 
-#         raise TypeError("url must be a string")
+def is_valid_url(url):
+    '''
+    this function checks if the url is valid
+    return type: boolean, returns true if url is a picture
+    '''
+    if type(url) != str: 
+        raise TypeError("url must be a string")
     
-#     valid_ends = [".jpg" , ".jpeg" , ".img" , ".gif" , "png"]
+    valid_ends = [".jpg" , ".jpeg" , ".img" , ".gif" , "png"]
 
-#     for char in valid_ends:
-#         if char in url:
-#             return True
-#         return False
+    for char in valid_ends:
+        if char in url:
+            return True
+        return False
         
