@@ -39,4 +39,20 @@ def is_valid_password(password):
     if special_char > 0 and lower_case > 0 and upper_case > 0 and num > 0:
         return True
     return False
+
+
+def is_valid_url(url):
+    '''
+    this function checks if the url is valid
+    return type: boolean, returns true if url is a picture
+    '''
+    if type(url) != str: 
+        raise TypeError("url must be a string")
+    
+    valid_ends = [".jpg" , ".jpeg" , ".img" , ".gif" , "png"]
+
+    # for char in url:
+    if valid_ends in url:
+        return True
+    return False
         

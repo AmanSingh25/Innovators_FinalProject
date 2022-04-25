@@ -1,5 +1,6 @@
 # -- Import section --
 import os
+# from test_model import *
 from flask import Flask
 from flask import render_template
 from flask import request, redirect, session, url_for, session
@@ -7,6 +8,7 @@ from flask_pymongo import PyMongo
 from model import *
 import secrets
 import bcrypt
+
 
 # -- Initialization section --
 app = Flask(__name__)
@@ -91,13 +93,13 @@ def singup():
             username = request.form['username']
             #encode password for hashing
             password = (request.form['password']).encode("utf-8")
-            password1 = (request.form['password1']).encode("utf-8")
+            # password1 = (request.form['password1']).encode("utf-8")
             #check passwords equal
             
             #hash password
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password, salt)
-            hashed1 = bcrypt.hashpw(password1, salt)
+            # hashed1 = bcrypt.hashpw(password1, salt)
             image_url = request.form['image_url']
             
             #add new user to database
@@ -119,6 +121,7 @@ def logout():
     
 @app.route('/create', methods=["GET", "POST"])
 def create():
+    
     if request.method == "GET":
         #render the form to populate the required parameters
         return render_template("create.html")
@@ -128,11 +131,17 @@ def create():
         post_url = request.form['posturl']
         post_message = request.form['postmessage']    
     collection = mongo.db.post
+    
+    if not is_valid_url(post_url):
+        return render_template("create.html")
 
+    elif is_all_empty(post_url):
+        return render_template("create.html")
      #insert an entry to the database using the variables declared above
     collection.insert_one({"postname":post_name, "posturl":post_url, "postmessage":post_message, "user":session['username'], "profile_url":session['image_url']})
     feeds = collection.find().sort('user')
     return render_template("feed.html", feeds = feeds)
+
 
 
 #allfeed route
