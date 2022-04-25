@@ -51,8 +51,8 @@ def is_valid_url(url):
     
     valid_ends = [".jpg" , ".jpeg" , ".img" , ".gif" , "png"]
 
-    # for char in url:
-    if valid_ends in url:
-        return True
-    return False
+    for char in valid_ends:
+        if valid_ends in url:
+            return True
+        return False
         
